@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Users:</h2>
+  <button class="btn btn-block mb-3" [disabled]="!enableAdd" [ngClass]="currentClasses" >Add User</button>
+  <!-- Root of ul -->
+  <ul  *ngFor="let user of users">
+    <li class="card card-body mb-2" [class.bg-light]="user.isActive" [style.border-color]="user.isActive ? 'green' : 'red'">
+      <!-- Start of the user profile -->
+      <div class="row">
+        <!-- User Image -->
+        <div class="col-sm-4">
+          <img class="img-fluid" [src]="user.image" alt="Nothing here. Sorry." *ngIf="user.image">
+        </div>
+        <!-- User attributes -->
+        <div class="col-sm-8">
+          <h2 [ngStyle]="currentStyles">{{user.firstName}} {{user.lastName}}</h2>
+          <!-- Address -->
+          <ul class="list-group" *ngIf="!showExtended">
+            <li class="list-group-item">Age:{{user.age}}</li>
+            <li class="list-group-item">{{user.address.street}}</li>
+            <li class="list-group-item">{{user.address.city}}</li>
+            <li class="list-group-item">{{user.address.state}}</li>
+            <li class="list-group-item">Registered: {{user.registered | date:"longDate"}}</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
